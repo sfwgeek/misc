@@ -1,0 +1,262 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+" *Start sfw geek Changes*
+
+" No Backup files (~).
+set nobackup
+
+" Store swap files in central location so parent directory date time
+" modified does not change (:help swap-file).
+set dir=$TEMP,$TMP,.
+
+" Substitute all matches in a line by default.
+set gdefault
+
+" Set Font
+set guifont=Bitstream\ Vera\ Sans\ Mono:h10
+
+" Set Window Size (default lines=25,columns=80).
+set lines=30
+set columns=100
+
+" Show commands in bottom right of screen.
+set showcmd
+
+" Show mode (Visual, Select) in bottom left of screen.
+set showmode
+
+" Status line:
+"set rulerformat=[%n]\ %<%f\ %((%1*%M%*%R%Y)%)\ %=%-19(\LINE\ [%3l/%3L]\ COL\ [%02c%03V]%)\ ascii['%02b']\ %P
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+"set statusline=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [u%04l,%04v][%p%%]\ [LEN=%L]
+"set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+"set statusline=[FileType=%{&ff}]%=[%04l,%04v][Lines=%L][%p%%]
+set statusline=[FileType=%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%=[%04l,%04v][Lines=%L][%p%%]
+set laststatus=2
+highlight StatusLine guifg=grey guibg=black
+highlight StatusLineNC guifg=grey guibg=black
+":so $VIMRUNTIME/syntax/hitest.vim
+
+" Matching Pairs (%)
+set matchpairs=(:),{:},[:],<:>
+
+" Stop dashes from being a word boundary.
+set iskeyword+=-
+
+" Tab Indentation Size (Tab button and >> << commmands)
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" # vim: expandtab shiftwidth=4 tabstop=4 textwidth=79:
+" # vim: et sw=4 ts=4 tw=79:
+
+set guioptions-=t " Remove tear off menus.
+set guioptions+=b " Bottom scroll bar.
+
+set nowrap
+
+" Line Numbering.
+set number
+highlight LineNr guibg=grey guifg=red
+
+" ctermbg : Background color in console
+" guibg : Background color in Gvim
+" ctermfg : Text color in console
+" guifg : Text color in Gvim
+" gui : Font formatting in Gvim
+" term : Font formatting in console (for example, bold)
+
+" Cursor Line.
+set cursorline
+
+" Code specific syntax.
+" http://svn.python.org/view/python/trunk/Misc/Vim/vimrc?revision=59598&view=markup
+
+" vimrc file for following the coding standards specified in PEP 7 & 8.
+"
+" To use this file, source it in your own personal .vimrc file (``source
+" <filename>``) or, if you don't have a .vimrc file, you can just symlink to it
+" (``ln -s <this file> ~/.vimrc``).  All options are protected by autocmds
+" (read below for an explanation of the command) so blind sourcing of this file
+" is safe and will not affect your settings for non-Python or non-C files.
+"
+"
+" All setting are protected by 'au' ('autocmd') statements.  Only files ending
+" in .py or .pyw will trigger the Python settings while files ending in *.c or
+" *.h will trigger the C settings.  This makes the file "safe" in terms of only
+" adjusting settings for Python and C files.
+"
+" Only basic settings needed to enforce the style guidelines are set.
+" Some suggested options are listed but commented out at the end of this file.
+
+
+" Number of spaces to use for an indent.
+" This will affect Ctrl-T and 'autoindent'.
+" ASP/ASP.NET: 4 spaces
+" C: 8 spaces (pre-existing files) or 4 spaces (new files)
+" CS: 4 spaces
+" CSS: 4 spaces
+" JavaScript: 4 spaces
+" Python: 4 spaces
+" SQL: 4 spaces
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master set shiftwidth=4
+au BufNewFile *.c,*.h set shiftwidth=4
+au BufRead *.c,*.h set shiftwidth=8
+au BufRead,BufNewFile *.cs set shiftwidth=4
+au BufRead,BufNewFile *.css set shiftwidth=4
+au BufRead,BufNewFile *.js set shiftwidth=4
+au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4
+au BufRead,BufNewFile *.sql set shiftwidth=4
+
+" Number of spaces that a pre-existing tab is equal to.
+" For the amount of space used for a new tab use shiftwidth.
+" ASP/ASP.NET: 4
+" C: 8
+" CS: 4
+" CSS: 4
+" JavaScript: 4
+" Python: 4
+" SQL: 4
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master set tabstop=4
+au BufRead,BufNewFile *.c,*.h set tabstop=8
+au BufRead,BufNewFile *.cs set tabstop=4
+au BufRead,BufNewFile *.css set tabstop=4
+au BufRead,BufNewFile *.js set tabstop=4
+au BufRead,BufNewFile *.py,*.pyw set tabstop=4
+au BufRead,BufNewFile *.sql set tabstop=4
+
+" Replace tabs with the equivalent number of spaces.
+" Also have an autocmd for Makefiles since they require hard tabs.
+" ASP/ASP.NET: no
+" C: no
+" CS: no
+" CSS: no
+" JavaScript: no
+" Makefile: no
+" Python: yes
+" SQL: no
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master set noexpandtab
+au BufRead,BufNewFile *.c,*.h set noexpandtab
+au BufRead,BufNewFile *.cs set noexpandtab
+au BufRead,BufNewFile *.css set noexpandtab
+au BufRead,BufNewFile *.js set noexpandtab
+au BufRead,BufNewFile Makefile* set noexpandtab
+au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.sql set noexpandtab
+
+" Use the below highlight group when displaying bad whitespace is desired
+highlight BadWhitespace ctermbg=red guibg=red
+highlight Todo ctermbg=Magenta guibg=orange guifg=orange gui=bold
+"syntax Todo ctermbg=Magenta guibg=orange
+"SynColor Todo		term=standout cterm=NONE ctermfg=Black ctermbg=Yellow gui=NONE guifg=Blue guibg=orange
+
+" Display tabs at the beginning of a line in Python source code files as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+
+" Display spaces at the beginning of a line as bad.
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master match BadWhitespace /^ \+/
+au BufRead,BufNewFile *.cs match BadWhitespace /^ \+/
+au BufRead,BufNewFile *.css match BadWhitespace /^ \+/
+au BufRead,BufNewFile *.js match BadWhitespace /^ \+/
+au BufRead,BufNewFile *.sql match BadWhitespace /^ \+/
+
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.c,*.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.cs match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.css match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.js match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.sql match BadWhitespace /\s\+$/
+
+" Wrap text after a certain number of characters
+" Python: 79 
+" C: 79
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
+
+" Turn off settings in 'formatoptions' relating to comment formatting.
+" - c : do not automatically insert the comment leader when wrapping based on
+"    'textwidth'
+" - o : do not insert the comment leader when using 'o' or 'O' from command mode
+" - r : do not insert the comment leader when hitting <Enter> in insert mode
+" Python: not needed
+" C: prevents insertion of '*' at the beginning of every line in a comment
+au BufRead,BufNewFile *.c,*.h set formatoptions-=c formatoptions-=o formatoptions-=r
+
+" Use UNIX (\n) line endings.
+" Only used for new files so as to not force existing files to change their
+" line endings.
+" C: yes
+" CSS: yes
+" JavaScript: yes
+" Python: yes
+au BufNewFile *.c,*.h set fileformat=unix
+au BufNewFile *.css set fileformat=unix
+au BufNewFile *.js set fileformat=unix
+au BufNewFile *.py,*.pyw set fileformat=unix
+
+" Use Windows (\r\n) line endings.
+" Only used for new files so as to not force existing files to change their
+" line endings.
+" ASP/ASP.NET: yes
+" CS: yes
+" SQL: yes
+au BufRead,BufNewFile *.asax,*.asp,*.ascx,*.aspx,*.config,*.cshtml,*.Master set fileformat=win
+au BufNewFile *.cs set fileformat=win
+au BufNewFile *.sql set fileformat=win
+
+
+" ----------------------------------------------------------------------------
+" The following section contains suggested settings.  While in no way required
+" to meet coding standards, they are helpful.
+
+" Set the default file encoding to UTF-8: ``set encoding=utf-8``
+
+" Puts a marker at the beginning of the file to differentiate between UTF and
+" UCS encoding (WARNING: can trick shells into thinking a text file is actually
+" a binary file when executing the text file): ``set bomb``
+
+" For full syntax highlighting:
+"``let python_highlight_all=1``
+"``syntax on``
+
+" Automatically indent based on file type: ``filetype indent on``
+" Keep indentation level from previous line: ``set autoindent``
+
+" Folding based on indentation: ``set foldmethod=indent``
+
+" Stop errors when opening Ruby files.
+let g:ruby_path = ':C:\Ruby193\bin'
+
+
+" *End sfw geek Changes*
+
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
