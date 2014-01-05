@@ -1,0 +1,12 @@
+Bunnahabhain,12,700ml,46.3%
+Glenfiddich,15,700ml,40%,Solera Vat
+Highland Park,12,700ml,40%
+Isle of Jura,,700ml,43%,Superstition
+Isle of Jura,,700ml,46%,Prophecy
+Isle of Jura,10,700ml,40%,Origin
+Isle of Jura,16,700ml,40%,Diurachs
+Lagavulin,16,700ml,43%,
+Lagavulin,16,700ml,43%,The Distillers Edition Bottled 2011 Distilled 1995
+Springbank,10,700ml,46%
+Talisker,10,700ml,45.8%,
+Talisker,25,700ml,57.2%,Bottled 2005 1/15600
