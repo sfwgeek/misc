@@ -1,0 +1,33 @@
+# Archiving unzip/zipping.
+tar --help
+tar -zxvf <file>.tar.gz
+
+# Binary viewer.
+od -ct X1 <file> | less
+
+# Read line after line with pattern in it.
+sed -n '/<pattern>/{n;p}' <file>
+
+# Read line before line with pattern in it.
+sed -n -e '/<pattern>/{x;p}' -e h <file>
+
+# Copy all files with certain pattern in file to destination directory.
+grep -l <pattern> * | xargs -I '{}' cp {} <dir-dst>
+
+# Locate pattern in Visual Studio files
+find . -name *.csproj -print0 | xargs -0 grep <pattern>
+find . -name *.cs -print0 | xargs -0 grep <pattern>
+
+# Delete all files in current directory that are owned by pattern.
+find . -maxdepth 1 -type f -user <pattern> -print0 | xargs -0 rm.
+
+
+# Lines NOT in common between file listA.txt and listB.txt
+cat listA.txt listB.txt | sort | uniq -u
+
+# Lines in listA.txt not in listB.txt.
+cat listA.txt listB.txt | sort | uniq -u | cat - listA.txt | sort | uniq -d
+cat listA.txt listB.txt | sort | uniq -u | cat - listB.txt listB.txt | sort | uniq -u
+
+# List files ignoring .svn directories.
+find * -maxdepth 0 -name '.svn' -prune -o -print
