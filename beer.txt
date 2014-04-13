@@ -1,0 +1,14 @@
+ERDINGER Urweiss
+Weihenstephan Hefe Weissbier
+Hofbrau Münchner Weisse
+Augustinerbrau Lagerbier Hell
+Schneider Weisse:
+    TAP6 Unser Aventinus
+    TAP7 Unser Original
+    Aventinus Eisbock
+Rothaus Hefeweizen
+Rothaus Pils
+Hopf Weisse
+Franziskaner Weissbier
+Maisel Weisse
+Paulaner Hefe-Weissbier
