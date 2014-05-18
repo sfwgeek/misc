@@ -1,6 +1,7 @@
 Bunnahabhain,12,700ml,46.3%
 Glenfiddich,12,350ml,40%,Solera Vat
 Glenfiddich,15,700ml,40%,Solera Vat
+Glenmorangie,10,700ml,40%,£26.00,2014-05-18
 Highland Park,12,700ml,40%,,
 Highland Park,12,700ml,40%,£22.00,2014-03-30
 Isle of Jura,,700ml,43%,Superstition
@@ -12,8 +13,8 @@ Lagavulin,16,700ml,43%,
 Lagavulin,16,700ml,43%,The Distillers Edition Bottled 2011 Distilled 1995
 Laphroaig,10,700ml,,
 Laphroaig,10,700ml,£25.00,2014-03-01
-Monkey Shoulder,700ml,40%,£23.00,2014-03-29
 Monkey Shoulder,700ml,40%,£23.00,2014-03-30
+Old Pulteney,12,700ml,40%,£25.00,2014-05-18
 Springbank,10,700ml,46%
 Talisker,10,700ml,45.8%,
 Talisker,25,700ml,57.2%,Bottled 2005 1/15600
