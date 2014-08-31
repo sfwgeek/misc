@@ -38,7 +38,7 @@ __release_stage__ = 'Alpha' # Phase.
 # http://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Imports_formatting
 # Standard library imports.
 import random
-#from pprint import pprint # DEBUG
+from pprint import pprint # DEBUG
 
 # Application-specific imports.
 import uk_nino
@@ -54,9 +54,9 @@ class TranslateNino(object):
 
     def __init__(self):
         # Setup translation maps.
-        self.prefixTranslateMap = TranslateNino.__getTranslateMap(uk_nino.Nino.PREFIX_SET)
-        self.middleTranslateMap = TranslateNino.__getTranslateMap(uk_nino.Nino.MIDDLE_SET)
-        self.suffixTranslateMap = TranslateNino.__getTranslateMap(uk_nino.Nino.SUFFIX_SET)
+        self.prefixTranslateMap = TranslateNino.getTranslateMap(uk_nino.Nino.PREFIX_SET)
+        self.middleTranslateMap = TranslateNino.getTranslateMap(uk_nino.Nino.MIDDLE_SET)
+        self.suffixTranslateMap = TranslateNino.getTranslateMap(uk_nino.Nino.SUFFIX_SET)
 
     def __str__(self):
         def getToString(translateMapTitle, translateMap):
@@ -85,7 +85,7 @@ class TranslateNino(object):
 
     # Private Methods.
     @staticmethod
-    def __getTranslateMap(srcSet):
+    def getTranslateMap(srcSet):
         """Return random mapping of set."""
         translateMap = {}
         translateMapSorted = sorted(list(srcSet))
@@ -111,13 +111,32 @@ class TranslateNino(object):
 
 # Program entry point.
 if __name__ == '__main__':
-    nino1 = pkg.uk_nino.Nino('AA123456A')
-    nino2 = pkg.uk_nino.Nino('AA123456A')
+    nino1 = uk_nino.Nino('AA123456A')
+    nino2 = uk_nino.Nino('AA123456A')
     print(nino1)
 
-    translateNino = pkg.uk_nino_translate.TranslateNino()
+    translateNino = TranslateNino()
     newNino1 = translateNino.translate(nino1)
     newNino2 = translateNino.translate(nino2)
     print(newNino1)
     print(newNino2)
     #print(translateNino)
+
+
+    import string
+    srcStr = string.ascii_letters
+    srcStr += ''.join([str(i) for i in range(0, 10)])
+    srcStr += "'"
+    srcSet = set(srcStr)
+    outputMap = TranslateNino.getTranslateMap(srcSet)
+    pprint(srcSet)
+    pprint(outputMap)
+
+    inputStr = 'Billy Badger'
+    srcTab = ''.join(sorted(srcSet))
+    dstTab = ''.join([outputMap[item] for item in sorted(outputMap.keys())])
+    transTab = string.maketrans(srcTab, dstTab)
+    print(srcTab)
+    print(dstTab)
+    #print(transTab)
+    print(inputStr.translate(transTab))
