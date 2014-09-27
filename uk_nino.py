@@ -78,7 +78,7 @@ class Nino(object):
         'ZA', 'ZB', 'ZE', 'ZH', 'ZK', 'ZL', 'ZM', 'ZP', 'ZR', 'ZS', 'ZT', 'ZW', 'ZX', 'ZY',
     ])
 
-    MIDDLE_SET = set(range(MIDDLE_MIN, MIDDLE_MAX))
+    MIDDLE_SET = set(range(MIDDLE_MIN, MIDDLE_MAX + 1))
 
     SUFFIX_SET = set([
         'A', 'B', 'C', 'D',
@@ -88,7 +88,7 @@ class Nino(object):
         """Constructor, store nino in component parts and validate."""
 
         if not isinstance(nino, basestring):
-            raise NinoException('The supplied NINO is not a string!')
+            raise Nino.NinoException('The supplied NINO is not a string!')
 
         # Validate length.
         if len(nino) != self.NINO_LEN:
@@ -99,7 +99,7 @@ class Nino(object):
             lines.append(line)
             lines = '{0}Actual length: {1}{2}'.format(self.INDENT, len(nino), self.NEW_LINE)
             lines.append(line)
-            raise NinoException(self.NEW_LINE.join(lines))
+            raise Nino.NinoException(self.NEW_LINE.join(lines))
 
         # Split nino into component parts
         self.prefix = nino[0:self.PREFIX_LEN]
@@ -108,17 +108,17 @@ class Nino(object):
         try:
             self.middle = int(nino[self.PREFIX_LEN:middleIndex])
         except ValueError:
-            raise NinoException('The NINO middle part is not a number!')
+            raise Nino.NinoException('The NINO middle part is not a number!')
 
         self.suffix = nino[middleIndex:]
 
         # Validate parts.
         if self.prefix not in self.PREFIX_SET:
-            raise NinoException('The NINO prefix part is invalid!')
+            raise Nino.NinoException('The NINO prefix part is invalid! {0}'.format(self.prefix))
         if self.middle not in self.MIDDLE_SET:
-            raise NinoException('The NINO middle part is invalid!')
+            raise Nino.NinoException('The NINO middle part is invalid! {0}'.format(self.middle))
         if self.suffix not in self.SUFFIX_SET:
-            raise NinoException('The NINO suffix part is invalid!')
+            raise Nino.NinoException('The NINO suffix part is invalid! {0}'.format(self.suffix))
 
     def __str__(self):
         lines = []
@@ -136,7 +136,7 @@ class Nino(object):
     def build(prefix, middle, suffix):
         middleFmt = '{0:0' + str(Nino.MIDDLE_LEN) + '}'
         middleStr = middleFmt.format(middle)
-        return '{0}{1}{2}'.format(prefix, middle, suffix)
+        return '{0}{1}{2}'.format(prefix, middleStr, suffix)
 
     # Exceptions.
     class NinoException(Exception):
